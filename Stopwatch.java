@@ -15,6 +15,10 @@ public class Stopwatch {
     private boolean running = false;
     private long currentTime = 0;
 
+    
+    public Stopwatch(){
+        
+    }
     public Stopwatch(StopWatchListener listener) {
         this.listener = listener;
     }
@@ -29,7 +33,8 @@ public class Stopwatch {
                 //lock to access running
                 synchronized (Stopwatch.this) {
                     if (running) {
-                        listener.onTick(Stopwatch.this.toString());
+                        if(listener != null)
+                            listener.onTick(Stopwatch.this.toString());
                         handler.postDelayed(this, 1000);
                     }
                 }
@@ -56,7 +61,8 @@ public class Stopwatch {
                 //lock to access running
                 synchronized (Stopwatch.this) {
                     if (running) {
-                        listener.onTick(Stopwatch.this.toString());
+                        if(listener != null)
+                            listener.onTick(Stopwatch.this.toString());
                         handler.postDelayed(this, 1000);
                     }
                 }
@@ -90,7 +96,8 @@ public class Stopwatch {
             @Override
             public void run() {
                 if (running) {
-                    listener.onTick(Stopwatch.this.toString());
+                    if(listener != null)
+                        listener.onTick(Stopwatch.this.toString());
                     handler.postDelayed(this, 1000);
                 }
             }
@@ -145,6 +152,10 @@ public class Stopwatch {
     public boolean isRunning() {
         return running;
     }
+    
+    public void setListener(StopWatchListener listener){
+        this.listener = listener;
+    }
 
     private String padZero(long time) {
         if (time < 10)
@@ -152,6 +163,6 @@ public class Stopwatch {
         return String.valueOf(time);
     }
 
-    private StopWatchListener listener;
+    private StopWatchListener listener = null;
 
 }
