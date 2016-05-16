@@ -19,8 +19,7 @@ stopwatch.start();
 long minutes = stopwatch.getElapsedTimeMin();
 Log.d("Time", stopwatch.toString());
 ```
-
-4. You can add a listener to listen for tick events every second by calling the Stopwatch(StopwatchListener listener) or stopwatch.addListener(StopwatchListener listener)
+4. You can add a listener to listen for tick events every second by calling the Stopwatch(StopwatchListener listener) or stopwatch.setListener(StopwatchListener listener)
 
 
 
